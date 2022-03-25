@@ -1,4 +1,4 @@
-#FABN
+# FABN
 Find A Better Name 
 ## Goals
 1. Provide a format for configuring and installing plugins and their dependencies. 
@@ -10,20 +10,21 @@ Find A Better Name
 1. Allow the plugin to specify native dependencies such as LSPs (IE: clangd)  or utilities (IE: fd) probably using Nix 
 1. Learn lua for myself
 ## Plugin Side
-A plugin will have a file called $pkgname-plugin.lua with the following format.
+A plugin will have a file called fabn/$pkgname.lua with the following format.
 ### Location
 For now, plugin files will be located in a registry (aka one of my github repositories). However, the goal is for package maintainers to maintain their own configs in their own repositories.
 ### Configuration format
 | Item | Description | function input | function output | required | defaults to |
 |--------------|-----------|------------|------------|------------|------------|
 | version | specifies the version of the plugin format | none, not a function | string with version "0.0.1" | yes | - |
-| default_opts | specifies the default options | none, not a function | dictionary of default options | yes | - |
-| setup | specifies the plugin at runtime | opts | nothing | yes | - ||
+| default_opts | specifies the default options. Every configurable option must be in the default_opts. | none, not a function | dictionary of default options. Preferably, the options are strings, ints, or bools (or lists of the above), so users can write configurations in languages like TOML or vim| yes | - |
+| setup | sets up the function. Must be idempotent - it can be called repeatedly and work fine. The package manager will have all the dependencies installed  | opts | nothing | yes | - ||
 | dependencies | specifies the plugin's dependencies | opts | list of dependencies | yes | - |
 | source| specifies the plugin code repository, useful if the plugin file is in a registry | not a function | string with github user/repo | - | repository of plugin file | 
 | keymaps | specifies any GLOBAL keymaps | opts | table of keymap entries | - | no keymaps | 
 ### Options
-The opts will be a metatable created from user supplied by the user combined with default opts. Initially it'll be only the first level, but the goal is for it to be recursive.
+The opts will be a table using the default options with user overrides. 
+The package manager will first get the dependencies, set them up, THEN call the setup function on installation and any time the plugin configuration changes. A package manager does not need to implement package reloading.
 ### Example
 
 ```lua
@@ -42,7 +43,9 @@ Any package manager which can read the default opts, metatable them with the use
 I am pretty new to both neovim and lua and if you have any suggestions on approach or features or want to contribute, I'm open to suggestions.
 ## TODO
 - [x] Create README.md
-- [ ] Create package manager using packer
+- [x] Create prototype package manager wrapping packer
+- [ ] Document bootstrap installation
+- [ ] Implement package reloading
 - [ ] Move my configs to package manager
 - [ ] Implement lazy loading
 - [ ] Add native dependencies (Ideally using nix)
