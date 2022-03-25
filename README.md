@@ -15,6 +15,7 @@ A plugin will have a file called $pkgname-plugin.lua with the following format.
 For now, plugin files will be located in a registry (aka one of my github repositories). However, the goal is for package maintainers to maintain their own configs in their own repositories.
 ### Configuration format
 | Item | Description | function input | function output | required/defaults to |
+|--------------|-----------|------------|------------|------------|
 | version | specifies the version of the plugin format | none, not a function | string with version "0.0.1" | yes |
 | default_opts | specifies the default options | none, not a function | dictionary of default options | yes |
 | setup | specifies the plugin at runtime | opts | nothing | yes | 
