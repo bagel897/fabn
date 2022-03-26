@@ -1,5 +1,6 @@
 local M = {}
-M.version = "0.0.1"
+-- This is a very complicated plugin and still a WIP to get running nicely.
+M.fabn_version = "0.0.1"
 M.default_opts = {
 	adapters = { debugpy = true, codelldb = false, lldb = true },
 	dap_ui = true,

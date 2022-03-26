@@ -1,5 +1,5 @@
 local M = {}
-M.version = "0.0.1"
+M.fabn_version = "0.0.1"
 M.vanilla_deps = function(opts)
 	return {
 		"nvim-lua/plenary.nvim",

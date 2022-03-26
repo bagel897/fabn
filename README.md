@@ -16,7 +16,7 @@ For now, plugin files will be located in a registry (aka one of my github reposi
 ### Configuration format
 | Item | Description | function input | function output | required | defaults to |
 |--------------|-----------|------------|------------|------------|------------|
-| version | specifies the version of the plugin format. This way we can make breaking changes to the spec without breaking existing plugins | none, not a function | string with version "0.0.1" | yes | - |
+| fabn_version | specifies the version of the plugin format. This way we can make breaking changes to the spec without breaking existing plugins | none, not a function | string with version "0.0.1" | yes | - |
 | default_opts | specifies the default options. Every configurable option must be in the default_opts. | none, not a function | dictionary of default options. Preferably, the options are strings, ints, or bools (or lists of the above), so users can write configurations in languages like TOML or vim| yes | - |
 | setup | sets up the function. Must be idempotent - it can be called repeatedly and work fine. The package manager will have all the dependencies installed  | opts | nothing | yes | - ||
 | dependencies | specifies the plugin's dependencies, installed via FABN with config files | opts | list of dependencies, each a dictionary with a name and config | no | no dependencies |

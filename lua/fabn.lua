@@ -14,7 +14,7 @@ end
 -- The spec is a table of options in lua. The current support will be just the name and the config options
 local function setup_plugin(item, use)
 	local module_name = item[1]
-	local user_opts = item[2]
+	local user_opts = item.opts
 	-- TODO remove keyword arguments
 	-- TODO Error Checking
 	local use_registry = not string.find(module_name, "/")

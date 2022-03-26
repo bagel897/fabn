@@ -1,5 +1,5 @@
 local M = {}
-M.version = "0.0.1"
+M.fabn_version = "0.0.1"
 M.default_opts = {
 	snippet_engine = "luasnip",
 	enable_autopairs = true,

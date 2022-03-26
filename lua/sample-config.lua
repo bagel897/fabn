@@ -1,1 +1,2 @@
-require("fabn").startup({ { "neo-tree" }, {"nvim-cmp", {lsp = false}} })
+require("fabn").startup({ { "neo-tree" }, {"nvim-cmp", opts= {lsp = false}} })
+
